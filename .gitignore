@@ -1,0 +1,14 @@
+# Vitepress
+docs/.vitepress/cache
+docs/.vitepress/dist
+
+# Node
+node_modules
+
+# Wally
+Packages
+DevPackages
+wally.lock
+
+# Argon
+sourcemap.json

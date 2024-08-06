@@ -1,0 +1,23 @@
+{
+	"legacyScripts": false,
+	"name": "PROJECT",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"Packages": {
+				"$path": "Packages",
+				"PROJECT": {
+					"$path": "src"
+				}
+			},
+			"Tests": {
+                "Client": {
+				    "$path": "tests/client"
+                },
+                "Server": {
+                    "$path": "tests/server"
+                }
+			}
+		}
+	}
+}

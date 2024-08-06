@@ -1,0 +1,27 @@
+name: Create Discord thread
+
+on:
+  pull_request:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  send:
+    name: Open Thread on Discord
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send webhook
+        env:
+          WEBHOOK_URL: ${{ secrets.EVENT_WEBHOOK_URL }}
+        run: |
+          PROJECT="${{ github.repository }}"
+          if [ "${{ github.event_name }}" == "issues" ]; then
+            EVENT_URL="${{ github.event.issue.html_url }}"
+            EVENT_TITLE="${{ github.event.issue.title }}"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            EVENT_URL="${{ github.event.pull_request.html_url }}"
+            EVENT_TITLE="${{ github.event.pull_request.title }}"
+          fi
+
+          lune run .lune/discord.luau WEBHOOK_URL event PROJECT EVENT_TITLE EVENT_URL

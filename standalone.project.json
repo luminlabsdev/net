@@ -1,0 +1,9 @@
+{
+    "name": "standalone",
+    "tree": {
+        "$path": "Packages",
+        "PROJECT": {
+            "$path": "src"
+        }
+    }
+}
