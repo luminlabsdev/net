@@ -2,7 +2,7 @@
     "name": "standalone",
     "tree": {
         "$path": "Packages",
-        "PROJECT": {
+        "lumin_net": {
             "$path": "src"
         }
     }

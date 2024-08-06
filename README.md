@@ -1,7 +1,7 @@
 <div align="center">
 
-# Template
+# Net
 
-A template for future reference when creating open source projects.
+A simple and efficient networking library.
 
 </div>

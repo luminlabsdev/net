@@ -1,12 +1,12 @@
 {
 	"legacyScripts": false,
-	"name": "PROJECT",
+	"name": "lumin-net",
 	"tree": {
 		"$className": "DataModel",
 		"ReplicatedStorage": {
 			"Packages": {
 				"$path": "Packages",
-				"PROJECT": {
+				"lumin_net": {
 					"$path": "src"
 				}
 			},

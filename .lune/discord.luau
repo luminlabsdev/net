@@ -4,7 +4,7 @@ local process = require("@lune/process")
 local roleIds = {
 	Aegis = "1219124088249782322",
 	LuminFramework = "1205321049957339228",
-    LuminNet = "1265887191922511953",
+    LuminNet = "1270253679626162197",
 	Snacky = "1205321076905869332",
 	LuminPluginSuite = "1262079690785558640",
 }
@@ -12,7 +12,7 @@ local roleIds = {
 local maintainerRoleIds = {
 	Aegis = "1265887260046397563",
 	LuminFramework = "1265887191922511953",
-    LuminNet = "1265887191922511953",
+    LuminNet = "1270141341665333359",
 	Snacky = "1265887289976950814",
 	LuminPluginSuite = "1265887316858114098",
 }
