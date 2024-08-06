@@ -5,3 +5,5 @@ registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
+promise = "lukadev-0/typed-promise@4.0.2"
+ratelimit = "red-blox/ratelimit@1.0.1"
