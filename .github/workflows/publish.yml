@@ -30,8 +30,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup Aftman
-      uses: ok-nick/setup-aftman@v0.4.2
+    - name: Setup Rokit
+      uses: CompeyDev/setup-rokit@v0.1.0
 
     - name: Log In
       env:
