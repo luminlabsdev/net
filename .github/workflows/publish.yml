@@ -15,6 +15,9 @@ jobs:
     name: Announce on Discord
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
     - name: Setup Rokit
       uses: CompeyDev/setup-rokit@v0.1.0
 
