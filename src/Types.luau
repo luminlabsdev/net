@@ -56,6 +56,7 @@ export type FunctionServer<T...> = {
 		resetInterval: number?,
 		invokeOverflowCallback: (sender: Player) -> ()?
 	) -> (),
+	SetInvalidTypeCallback: (self: EventServer<T...>, callback: (sender: Player) -> ()) -> (),
 
 	Reliable: boolean,
 
