@@ -30,4 +30,4 @@ jobs:
             EVENT_TITLE="${{ github.event.pull_request.title }}"
           fi
 
-          lune run .lune/discord.luau $WEBHOOK_URL event $PROJECT $EVENT_TITLE $EVENT_URL
+          lune run .lune/discord.luau "$WEBHOOK_URL" "event" "$PROJECT" "$EVENT_TITLE" "$EVENT_URL"
