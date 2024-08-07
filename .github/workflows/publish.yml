@@ -26,7 +26,7 @@ jobs:
         WEBHOOK_URL: ${{ secrets.UPDATE_WEBHOOK_URL }}
       run: |
         VERSION="${{ github.ref_name }}"
-        lune run .lune/discord.luau WEBHOOK_URL announcement PROJECT VERSION
+        lune run .lune/discord.luau "WEBHOOK_URL" "announcement" "PROJECT" "VERSION"
 
   # Publish to wally
   publish-wally:
