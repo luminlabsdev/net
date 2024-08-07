@@ -4,21 +4,27 @@ local RunService = game:GetService("RunService")
 
 local Identifier = require(script.Identifier)
 local Storage = require(script.Storage)
+local Network = script.Parent.Network
 
 local RunContext = if RunService:IsServer() then "Server" else "Client"
 
-local Remotes = {
-	Client = require(script.Client),
-	Server = require(script.Server),
+local InterfaceModules = {
+	Client = require(Network.Client),
+	Server = require(Network.Server),
+}
+
+local InterfaceIndexes = {
+	Client = { __index = require(script.Client) },
+	Server = { __index = require(script.Server) },
 }
 
 -- Functions
 
 -- Use the same contstructor for all events; the Event and Function functions are returned for type checking purposes
 local function new(name: string, reliable: boolean?)
-	local self = setmetatable({}, Remotes[RunContext])
+	local self = setmetatable({}, InterfaceIndexes[RunContext])
 
-    -- Check the storage to see if we can re-reference an object
+	-- Check the storage to see if we can re-reference an object
 	if Storage[name] then
 		return Storage[name]
 	else
@@ -35,9 +41,13 @@ local function new(name: string, reliable: boolean?)
 	self._OnInvalidType = nil
 	self._Identifier = Identifier.Shared(name):expect()
 
-    -- Set explicit calls so we don't waste performance later
-	self._Fire = if reliable then Remotes[RunContext].SendReliableBatched else Remotes[RunContext].SendUnreliable
-	self._FireNow = if reliable then Remotes[RunContext].SendReliable else Remotes[RunContext].SendUnreliable
+	-- Set explicit calls so we don't waste performance later
+	self._Fire = if reliable
+		then InterfaceModules[RunContext].SendReliableBatched
+		else InterfaceModules[RunContext].SendUnreliable
+	self._FireNow = if reliable
+		then InterfaceModules[RunContext].SendReliable
+		else InterfaceModules[RunContext].SendUnreliable
 
 	return self
 end

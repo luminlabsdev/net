@@ -2,7 +2,6 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Network = script.Network
-local Interface = require(script.Interface)
 local Types = require(script.Types)
 
 if RunService:IsServer() then
@@ -23,6 +22,8 @@ if RunService:IsServer() then
 else
     require(Network.Client).Init()
 end
+
+local Interface = require(script.Interface)
 
 return {
 	Client = Interface,

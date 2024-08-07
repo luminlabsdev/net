@@ -61,7 +61,7 @@ local function Init()
 				-- Check if a listener exists for the specific identifier
 				local Listener = Listeners[id]
 				if Listener then
-					for _, call in calls do
+					for _, call in callList do
 						Listener(call)
 					end
 				end

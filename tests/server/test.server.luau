@@ -1,10 +1,15 @@
 local Packages = game:GetService("ReplicatedStorage").Packages
-local PlayerService = game:GetService("Players")
 local NetServer = require(Packages.lumin_net).Server
 
 local MyEvent = NetServer.Event("HI")
 
-MyEvent:Fire(PlayerService:WaitForChild("2jammers") ,"from the server :P")
-MyEvent:Listen(function(mystuff)
-    print(mystuff)
+MyEvent:Listen(function(plr, stuff)
+    print(plr, stuff)
 end)
+
+MyEvent:SetRateLimit(2, 4, function(sender)
+    print(sender.DisplayName, "stop doing that!!!!")
+end)
+
+task.wait(10)
+MyEvent:FireAll("from the server :P")

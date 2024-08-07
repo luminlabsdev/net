@@ -3,7 +3,7 @@ local Promise = require(script.Parent.Parent.promise)
 export type Constructor<T> = (name: string, reliable: boolean?) -> T
 
 export type EventClient<T...> = {
-	Listen: (self: EventClient<T...>, func: (T...) -> ()) -> (),
+	Listen: (self: EventClient<T...>, listener: (T...) -> ()) -> (),
 	Fire: (self: EventClient<T...>, T...) -> (),
 	FireNow: (self: EventClient<T...>, T...) -> (),
 	Reliable: boolean,
@@ -14,12 +14,13 @@ export type EventClient<T...> = {
 }
 
 export type EventServer<T...> = {
-	Listen: (self: EventServer<T...>, func: (sender: Player, T...) -> (), validTypes: { string }?) -> (),
+	Listen: (self: EventServer<T...>, listener: (sender: Player, T...) -> (), validTypes: { string }?) -> (),
 	Fire: (self: EventServer<T...>, recipient: Player, T...) -> (),
 	FireNow: (self: EventServer<T...>, recipient: Player, T...) -> (),
 	FireAll: (self: EventServer<T...>, T...) -> (),
 	FireExcept: (self: EventServer<T...>, except: Player | { Player }, T...) -> (),
 	FireFilter: (self: EventServer<T...>, filter: (Player) -> boolean, T...) -> (),
+	SetInvalidTypeCallback: (self: EventServer<T...>, callback: (sender: Player) -> ()) -> (),
 	SetRateLimit: (
 		self: EventServer<T...>,
 		maxCalls: number,
