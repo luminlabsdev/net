@@ -5,7 +5,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
-local Promise = require(script.Parent.Parent.Parent.promise)
+local Future = require(script.Parent.Parent.Parent.future)
 
 local NetFolder = ReplicatedStorage:WaitForChild("Net")
 local Reliable = NetFolder:WaitForChild("Reliable")
@@ -19,16 +19,16 @@ local function UInt(num: number): any
     return string.pack(`I{math.ceil(math.log(num + 1, 2) / 8)}`, num)
 end
 
-local function Shared(name: string): Promise.TypedPromise<any>
-    return Promise.new(function(resolve)
+local function Shared(name: string): Future.Future<any>
+    return Future.new(function(name)
         if RunService:IsServer() then
             if Reliable:GetAttribute(name) then
-                resolve(Reliable:GetAttribute(name))
+                return Reliable:GetAttribute(name)
             else
                 NextShared += 1
                 local Id = UInt(NextShared)
                 Reliable:SetAttribute(name, Id)
-                resolve(Id)
+                return Id
             end
         else
             local Delay = task.delay(5, function()
@@ -40,9 +40,9 @@ local function Shared(name: string): Promise.TypedPromise<any>
             end
 
             task.cancel(Delay)
-            resolve(Reliable:GetAttribute(name))
+            return Reliable:GetAttribute(name)
         end
-    end)
+    end, name)
 end
 
 local function Exists(name: string): boolean

@@ -1,6 +1,6 @@
 -- Variables
 
-local Promise = require(script.Parent.Parent.Parent.promise)
+local Future = require(script.Parent.Parent.Parent.future)
 local Types = require(script.Parent.Parent.Types)
 local Identifier = require(script.Parent.Identifier)
 
@@ -24,13 +24,11 @@ local function Listen<T...>(self: Types.EventClient<T...>, listener: (T...) -> (
 	end)
 end
 
-local function InvokeAsync<T...>(self: Types.FunctionClient<T...>, ...: T...): Promise.TypedPromise<T...>
+local function InvokeAsync<T...>(self: Types.FunctionClient<T...>, ...: T...): Future.Future<T...>
 	local Packed = table.pack(...)
-	return Promise.new(function(resolve)
-		resolve(
-			table.unpack(
-				Client.SendReliableBatchedCall(self._Identifier, table.pack(Identifier.Unique(), table.unpack(Packed)))
-			)
+	return Future.new(function()
+		return table.unpack(
+			Client.SendReliableBatchedCall(self._Identifier, table.pack(Identifier.Unique(), table.unpack(Packed)))
 		)
 	end)
 end
