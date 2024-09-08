@@ -62,6 +62,12 @@ jobs:
           - name: Install Wally dependencies
             run: wally install
 
+          - name: Generate sourcemap
+            run: argon sourcemap standalone.project.json --output standalone.project.json
+
+          - name: Generate package types
+            run: wally-package-types --sourcemap sourcemap.json Packages
+
           - name: Format code
             run: stylua src/
 

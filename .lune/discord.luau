@@ -23,9 +23,9 @@ if type == "announcement" then
 			content = if noPing == true then nil else `<@&{projectRole}>`,
 			embeds = {
 				{
-					title = `Release {tag} · lumin-dev/{projectName}`,
+					title = `Release {tag} · luminlabsdev/{projectName}`,
 					description = `Release notification for the latest version of {formattedProjectName}`,
-					url = `https://github.com/lumin-dev/{projectName}/releases/tag/{tag}`,
+					url = `https://github.com/luminlabsdev/{projectName}/releases/tag/{tag}`,
 					color = 7506646,
 					author = {
 						name = "GitHub",
