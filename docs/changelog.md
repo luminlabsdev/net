@@ -1,7 +1,10 @@
----
+* * *
+
 hide:
-  - navigation
----
+
+- navigation
+
+* * *
 
 # Changelog
 
@@ -12,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-09-08
+
 ### Added
 
 - Added proper docs
@@ -21,4 +26,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release! 🥳
 
-[unreleased]: https://github.com/luminlabsdev/net/compare/v0.1.0...HEAD
+[unreleased]: https://github.com/luminlabsdev/net/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/luminlabsdev/net/compare/d9cddb345d23b29687d678cd9939c14092570505...v0.2.0
