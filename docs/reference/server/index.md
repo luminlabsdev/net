@@ -1,8 +1,10 @@
-# ServerInterface
+# Interface
 
 References the server event and function constructors
 
 ## Functions
+
+---
 
 ### `Event`
 
