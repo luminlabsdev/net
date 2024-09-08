@@ -63,7 +63,7 @@ jobs:
             run: wally install
 
           - name: Generate sourcemap
-            run: argon sourcemap standalone.project.json --output standalone.project.json
+            run: argon sourcemap standalone.project.json --output sourcemap.json
 
           - name: Generate package types
             run: wally-package-types --sourcemap sourcemap.json Packages
