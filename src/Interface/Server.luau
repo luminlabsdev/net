@@ -77,6 +77,16 @@ local function FireFilter<T...>(self: Types.EventServer<T...>, filter: (Player) 
 end
 
 --[=[
+	Fires an event with a array of players, and loops through the provided array and fires on the given players.
+]=]
+
+local function FireFor<T...>(self: Types.EventServer<T...>, players: { Player }, ...: T...)
+	for _, recipient in pairs(players) do
+		self._Fire(recipient, self._Identifier, table.pack(...))
+	end
+end
+
+--[=[
 	Listens for the event to be fired by the client, then runs the provided function.
 
 	[Learn More](https://luminlabsdev.github.io/net/reference/server/event#listen)
@@ -192,6 +202,7 @@ return {
 	FireAll = FireAll,
 	FireExcept = FireExcept,
 	FireFilter = FireFilter,
+	FireFor = FireFor,
 
 	Listen = Listen,
 
