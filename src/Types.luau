@@ -20,6 +20,7 @@ export type EventServer<T...> = {
 	FireAll: (self: EventServer<T...>, T...) -> (),
 	FireExcept: (self: EventServer<T...>, except: Player | { Player }, T...) -> (),
 	FireFilter: (self: EventServer<T...>, filter: (Player) -> boolean, T...) -> (),
+	FireFor: (self: EventServer<T...>, players: { Player }, T...) -> (),
 	SetInvalidTypeCallback: (self: EventServer<T...>, callback: (sender: Player) -> ()) -> (),
 	SetRateLimit: (
 		self: EventServer<T...>,
