@@ -45,11 +45,10 @@ elseif type == "event" then
 		method = "POST",
 		headers = { ["Content-Type"] = "application/json" },
 		body = net.jsonEncode({
-			content = "",
 			embeds = {
 				{
 					title = title,
-					description = `[View issue/pull request]({url})`,
+					description = `[View issue]({url})`,
 					color = 7506646,
 				},
 			},
