@@ -23,7 +23,7 @@ if type == "announcement" then
 			content = if noPing == true then nil else `<@&{projectRole}>`,
 			embeds = {
 				{
-					title = `Release {tag} · luminlabsdev/{projectName}`,
+					title = `Release {tag} · {formattedProjectName}`,
 					description = `Release notification for the latest version of {formattedProjectName}`,
 					url = `https://github.com/luminlabsdev/{projectName}/releases/tag/{tag}`,
 					color = 7506646,
@@ -45,7 +45,7 @@ elseif type == "event" then
 		method = "POST",
 		headers = { ["Content-Type"] = "application/json" },
 		body = net.jsonEncode({
-			content = nil,
+			content = "",
 			embeds = {
 				{
 					title = title,
