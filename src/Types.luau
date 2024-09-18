@@ -1,5 +1,3 @@
-local Future = require(script.Parent.Parent.future)
-
 export type Constructor<T> = (name: string, reliable: boolean?) -> T
 
 export type EventClient<T...> = {
@@ -38,7 +36,7 @@ export type EventServer<T...> = {
 }
 
 export type FunctionClient<T...> = {
-	InvokeAsync: (self: FunctionClient<T...>, T...) -> Future.Future<T...>,
+	InvokeAsync: (self: FunctionClient<T...>, T...) -> T...,
 	Reliable: boolean,
 
 	_Identifier: string,

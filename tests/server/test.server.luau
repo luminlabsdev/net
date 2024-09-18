@@ -1,5 +1,5 @@
 local Packages = game:GetService("ReplicatedStorage").Packages
-local NetServer = require(Packages.lumin_net).Server
+local NetServer = require(Packages.net).Server
 
 local MyEvent = NetServer.Event("HI")
 

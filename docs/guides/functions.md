@@ -9,7 +9,7 @@ Invoking is done on the client, and it returns a Future. Typically, you would wa
 ```luau
 local Net = require(Packages.net).Client
 local MyFunction = Net.Function("MyFunction")
-local Response = MyFunction:InvokeAsync("Hi"):Await()
+local Response = MyFunction:InvokeAsync("Hi")
 
 print(Response) -- Output: Goodbye
 ```

@@ -14,5 +14,5 @@ hide:
 ### Wally
 
 1. Open a project in your favorite text editor
-2. Add `lumin/net@^0.2.0` to your `wally.toml` file
+2. Add `lumin/net@^0.4.0` to your `wally.toml` file
 3. Run `wally install` the project should be inside of your `/Packages` directory.

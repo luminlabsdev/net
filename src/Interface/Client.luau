@@ -1,6 +1,5 @@
 -- Variables
 
-local Future = require(script.Parent.Parent.Parent.future)
 local Types = require(script.Parent.Parent.Types)
 local Identifier = require(script.Parent.Identifier)
 
@@ -40,17 +39,13 @@ local function Listen<T...>(self: Types.EventClient<T...>, listener: (T...) -> (
 end
 
 --[=[
-	Invokes the server, equivalent to [RemoteFunction:InvokeServer](https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeServer). Returns a Future.
+	Invokes the server, equivalent to [RemoteFunction:InvokeServer](https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeServer).
 
 	[Learn More](https://luminlabsdev.github.io/net/reference/client/function#invokeasync)
 ]=]
-local function InvokeAsync<T...>(self: Types.FunctionClient<T...>, ...: T...): Future.Future<T...>
+local function InvokeAsync<T...>(self: Types.FunctionClient<T...>, ...: T...): T...
 	local Packed = table.pack(...)
-	return Future.new(function()
-		return table.unpack(
-			Client.SendReliableBatchedCall(self._Identifier, table.pack(Identifier.Unique(), table.unpack(Packed)))
-		)
-	end)
+	return table.unpack(Client.SendReliableBatchedCall(self._Identifier, table.pack(Identifier.Unique(), table.unpack(Packed))))
 end
 
 -- Module

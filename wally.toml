@@ -1,9 +1,8 @@
 [package]
 name = "lumin/net"
-version = "0.3.0"
+version = "0.4.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
-future = "red-blox/future@^1.0.0"
 ratelimit = "red-blox/ratelimit@1.0.1"
