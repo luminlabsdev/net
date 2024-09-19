@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed an issue where `Futures` were still used that resulted in errornous code
+
 ## [0.4.0] - 2024-09-18
 
 ### Removed

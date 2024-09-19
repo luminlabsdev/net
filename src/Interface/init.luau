@@ -39,7 +39,7 @@ local function new(name: string, reliable: boolean?)
 	self._Ratelimit = nil
 	self._InvokeOverflow = nil
 	self._OnInvalidType = nil
-	self._Identifier = Identifier.Shared(name):Await()
+	self._Identifier = Identifier.Shared(name)
 
 	-- Set explicit calls so we don't waste performance later
 	self._Fire = if reliable
