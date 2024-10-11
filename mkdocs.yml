@@ -1,6 +1,6 @@
-site_name: Lumin Framework
-repo_url: https://github.com/luminlabsdev/framework
-repo_name: luminlabsdev/framework
+site_name: Lumin Net
+repo_url: https://github.com/luminlabsdev/net
+repo_name: luminlabsdev/net
 copyright: Copyright &copy; 2021 - 2024 Lumin Labs & Contributors
 edit_uri: edit/main/docs/
 nav:
