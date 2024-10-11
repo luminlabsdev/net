@@ -80,6 +80,7 @@ jobs:
               tag_name: ${{ github.ref_name }}
               name: ${{ github.ref_name }}
               prerelease: ${{ contains(github.ref_name, 'rc') }}
+              generate_release_notes: true
               body: |
                 ## Changelog
                 ${{ needs.bump.outputs.release-body }}

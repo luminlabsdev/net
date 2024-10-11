@@ -21,7 +21,7 @@ local InterfaceIndexes = {
 -- Functions
 
 -- Use the same contstructor for all events; the Event and Function functions are returned for type checking purposes
-local function new(name: string, reliable: boolean?)
+local function new(name: string, reliable: boolean?, types: { string }?)
 	local self = setmetatable({}, InterfaceIndexes[RunContext])
 
 	-- Check the storage to see if we can re-reference an object
@@ -31,21 +31,23 @@ local function new(name: string, reliable: boolean?)
 		Storage[name] = self
 	end
 
-	if reliable == nil then
-		reliable = true
-	end
+    self.Id = Identifier.Shared(name)
+    self.Reliable = true
+    self._Middleware = {}
 
-	self.Reliable = reliable
-	self._Ratelimit = nil
-	self._InvokeOverflow = nil
-	self._OnInvalidType = nil
-	self._Identifier = Identifier.Shared(name)
+    if reliable ~= nil then
+        self.Reliable = reliable
+    end
+
+    if types then
+        self._Types = types
+    end
 
 	-- Set explicit calls so we don't waste performance later
-	self._Fire = if reliable
+	self._Fire = if self.Reliable
 		then InterfaceModules[RunContext].SendReliableBatched
 		else InterfaceModules[RunContext].SendUnreliable
-	self._FireNow = if reliable
+	self._FireNow = if self.Reliable
 		then InterfaceModules[RunContext].SendReliable
 		else InterfaceModules[RunContext].SendUnreliable
 
@@ -56,5 +58,5 @@ end
 
 return {
 	Event = new,
-	Function = new,
+	Async = new,
 }

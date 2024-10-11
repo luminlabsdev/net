@@ -1,8 +1,28 @@
-site_name: LuminNet
-repo_url: https://github.com/luminlabsdev/net
-repo_name: luminlabsdev/net
+site_name: Lumin Framework
+repo_url: https://github.com/luminlabsdev/framework
+repo_name: luminlabsdev/framework
 copyright: Copyright &copy; 2021 - 2024 Lumin Labs & Contributors
 edit_uri: edit/main/docs/
+nav:
+  - Home: index.md
+  - Guides:
+    - Setup: guides/index.md
+    - Events: guides/events.md
+    - Asyncs: guides/asyncs.md
+    - Middleware: guides/middleware.md
+    - Type Validation: guides/type-validation.md
+  - API:
+    - Server:
+      - Index: api/server/index.md
+      - Event: api/server/event.md
+      - Async: api/server/async.md
+    - Client:
+      - Index: api/client/index.md
+      - Event: api/client/event.md
+      - Async: api/client/async.md
+    
+  - Install: installation.md
+  - Changelog: changelog.md
 markdown_extensions:
   - attr_list
   - pymdownx.emoji:

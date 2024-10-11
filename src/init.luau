@@ -2,7 +2,16 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
 local Network = script.Network
+local Packages = script.Parent
 local Types = require(script.Types)
+local Logs = require(script.Logs)
+local Debugger = require(Packages.debugger)
+
+Debugger.SetLogs(Logs)
+Debugger.SetMetadata({
+    PackageURL = "https://luminlabsdev.github.io/net/",
+    PackageName = "Net",
+})
 
 if RunService:IsServer() then
 	if not ReplicatedStorage:FindFirstChild("Net") then
@@ -20,7 +29,7 @@ if RunService:IsServer() then
 	end
 	require(Network.Server).Init()
 else
-    require(Network.Client).Init()
+	require(Network.Client).Init()
 end
 
 local Interface = require(script.Interface)
@@ -31,10 +40,10 @@ return {
 } :: {
 	Client: {
 		Event: Types.Constructor<Types.EventClient<...any>>,
-		Function: Types.Constructor<Types.FunctionClient<...any>>,
+		Async: Types.Constructor<Types.AsyncClient<...any>>,
 	},
 	Server: {
 		Event: Types.Constructor<Types.EventServer<...any>>,
-		Function: Types.Constructor<Types.FunctionServer<...any>>,
-	}
+		Async: Types.Constructor<Types.AsyncServer<...any>>,
+	},
 }

@@ -14,7 +14,7 @@ local Client = require(Network.Client)
 	[Learn More](https://luminlabsdev.github.io/net/reference/client/event#fire)
 ]=]
 local function Fire<T...>(self: Types.EventClient<T...>, ...: T...)
-	self._Fire(self._Identifier, table.pack(...))
+	self._Fire(self.Id, table.pack(...))
 end
 
 --[=[
@@ -23,7 +23,7 @@ end
 	[Learn More](https://luminlabsdev.github.io/net/reference/client/event#firenow)
 ]=]
 local function FireNow<T...>(self: Types.EventClient<T...>, ...: T...)
-	self._FireNow(self._Identifier, table.pack(...))
+	self._FireNow(self.Id, table.pack(...))
 end
 
 --[=[
@@ -33,19 +33,19 @@ end
 ]=]
 local function Listen<T...>(self: Types.EventClient<T...>, listener: (T...) -> ())
 	assert(listener, "Must provide a listener")
-	Client.Listen(self._Identifier, function(args)
+	Client.Listen(self.Id, function(args)
 		listener(table.unpack(args))
 	end)
 end
 
 --[=[
-	Invokes the server, equivalent to [RemoteFunction:InvokeServer](https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeServer).
+	Requests a value from the server, equivalent to [RemoteFunction:InvokeServer](https://create.roblox.com/docs/reference/engine/classes/RemoteFunction#InvokeServer).
 
-	[Learn More](https://luminlabsdev.github.io/net/reference/client/function#invokeasync)
+	[Learn More](https://luminlabsdev.github.io/net/reference/client/async#request)
 ]=]
-local function InvokeAsync<T...>(self: Types.FunctionClient<T...>, ...: T...): T...
+local function Request<T...>(self: Types.AsyncClient<T...>, ...: T...): T...
 	local Packed = table.pack(...)
-	return table.unpack(Client.SendReliableBatchedCall(self._Identifier, table.pack(Identifier.Unique(), table.unpack(Packed))))
+	return table.unpack(Client.SendReliableBatchedCall(self.Id, table.pack(Identifier.Unique(), table.unpack(Packed))))
 end
 
 -- Module
@@ -54,5 +54,5 @@ return {
 	Fire = Fire,
 	FireNow = FireNow,
 	Listen = Listen,
-	InvokeAsync = InvokeAsync,
+	Request = Request,
 }

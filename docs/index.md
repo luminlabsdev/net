@@ -7,7 +7,7 @@ hide:
 A simple and efficient networking library.
 
 [Guides](./guides/){ .md-button .md-button--primary }
-[Reference](./reference/){ .md-button }
+[Reference](./api/){ .md-button }
 
 ## Better API
 
@@ -27,28 +27,30 @@ Has some of the best API out all of the non-buffer networking libraries availabl
 
 ```luau
 local Net = require(Packages.net).Server
-local MyEvent = Net.Event("MyEvent")
+local MyEvent = Net.Event("MyEvent", true, {"number", "string", "boolean"})
 
 MyEvent:Listen(function(number, string, boolean)
-    print("Only accepting numbers, strings, and bools")
-end, {"number", "string", "boolean"}) -- If the client does not send these types in that order, the packet will be dropped
+    print("Only accepting numbers, strings, and bools in this order")
+end) -- If the client does not send these types in that order, the packet will be dropped
 ```
 
 Provides better type validation API than other libraries like Red, which require lots of extra code.
 
-## Built-In Ratelimiting
+## Simple Middleware
 
 ```luau
 local Net = require(Packages.net).Server
-local MyEvent = Net.Event("MyEvent")
+local MyEvent = Net.Event("MyEvent", true, {"number", "string", "boolean"})
 
-MyEvent:Listen(function()
-    print("Prints 1 time every 10 seconds")
-end)
+MyEvent:SetMiddleware({
+    Dropped = function(value1, value2, value3) -- got string, boolean, number
+        print("Packet dropped!") -- Net will drop the packet, but this allows for a custom callback
+    end
+})
 
-MyEvent:SetRateLimit(1, 10, function(sender)
-    print(sender.DisplayName, "is sending too many requests")
+MyEvent:Listen(function(number, string, boolean)
+    print("Only accepting numbers, strings, and bools in this order")
 end)
 ```
 
-Has a built-in ratelimiting API which uses an efficient and reliable module under the hood.
+Has a great middleware API which makes some of the internal code extendable, and allow it to do more.

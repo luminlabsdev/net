@@ -67,7 +67,7 @@ The data that should be sent to each player
 
 ---
 
-### `FireExcept`
+### `FireAllExcept`
 
 Fires an event which sends data to every client connected to the server, except for players defined in the `except` parameter.
 
@@ -112,44 +112,20 @@ Listens for the event to be fired by the client, then runs the provided function
 - **listener:** `(sender: Player, ...: any) -> ()`<br>
 The function to call when data is recieved
 
-- **validTypes:** `{ string }?`<br>
-Valid types that the server should recieve in the order they are specified
-
 **Returns**
 
 - **void**
 
 ---
 
-### `SetRateLimit`
+### `SetMiddleware`
 
-Sets a rate limit that is applied when firing an event from the client.
-
-**Parameters**
-
-- **maxCalls:** `number`<br>
-The maximum amount of invokes allowed every `interval` seconds; set to -1 to disable the rate limit
-
-- **resetInterval:** `number?`<br>
-The interval of which `maxCalls` is reset
-
-- **overflowCallback:** `(sender: Player) -> ()?`<br>
-The callback function to run when the player has exceeded the current rate limit
-
-**Returns**
-
-- **void**
-
----
-
-### `SetInvalidTypeCallback`
-
-Allows you to set a callback that runs whenever an invalid type is sent by the client.
+Allows you to set middleware that runs at specific points in time.
 
 **Parameters**
 
-- **callback:** `(sender: Player) -> ()`<br>
-The function to run when an invalid type is reached and a packet is dropped
+- **middleware** `{ [MiddlewareType]: (...any) -> () }`<br>
+A table of middleware for the event.
 
 **Returns**
 

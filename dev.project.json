@@ -1,5 +1,5 @@
 {
-	"emitLegacyScripts": true,
+	"emitLegacyScripts": false,
 	"name": "net",
 	"tree": {
 		"$className": "DataModel",

@@ -15,6 +15,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Adds a middleware API in place of callbacks
+- Packet is now dropped if args contain `NaN`
+
+### Changed
+
+- Changes `Functions` to `Async`
+- Moves `Listen` & `OnRequest` type validation params to constructor
+- Changes `OnInvoke` and `InvokeAsync` to `OnRequest` and `Request`
+
+### Removed
+
+- Removes default ratelimiting in favor of a custom middleware-based solution
+
 ## [0.4.1] - 2024-09-19
 
 ### Fixed

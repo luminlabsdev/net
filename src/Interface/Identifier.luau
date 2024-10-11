@@ -5,8 +5,11 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
+local Packages = script.Parent.Parent.Parent
 local NetFolder = ReplicatedStorage:WaitForChild("Net")
 local Reliable = NetFolder:WaitForChild("Reliable")
+
+local Debugger = require(Packages.debugger)
 
 local NextShared = 0
 local NextUnique = 0
@@ -29,7 +32,7 @@ local function Shared(name: string)
 		end
 	else
 		local Delay = task.delay(5, function()
-			warn(`Infinite yield possible on identifier '{name}'`)
+            Debugger.Warn("NoIdentifier", name)
 		end)
 
 		while not Reliable:GetAttribute(name) do

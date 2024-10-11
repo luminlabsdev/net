@@ -4,18 +4,20 @@ The type validation feature allows you to strictly specify what types that the s
 
 ## Usage
 
-To use the type validation feature, you have to declare a table of types after a server `Listen` or `OnInvoke` method. The types must also be in the exact order as they are sent; if they are not you might encounter some unexplainable issues if not tested. The example below will kick the sender of the packet if the type is invalid.
+To use the type validation feature, you have to declare a table of types in the constructor. The types must also be in the exact order as they are sent; if they are not you might encounter some unexplainable issues if not tested. The example below will kick the sender of the packet if the type is invalid.
 
 ```luau
 local Net = require(Packages.net).Server
-local MyEvent = Net.Event("MyEvent")
+local MyEvent = Net.Event("MyEvent", true, {"string", "Instance", "number"})
+
+MyEvent:SetMiddleware({
+    Dropped = function(sender, data1, data2, data3)
+        sender:Kick("You might be exploiting...")
+    end
+})
 
 MyEvent:Listen(function(sender, data1, data2, data3)
     print(sender.DisplayName, data1, data2, data3)
-end, {"string", "Instance", "number"})
-
-MyEvent:SetInvalidTypeCallback(function(sender)
-    sender:Kick("You might be exploiting...")
 end)
 ```
 
@@ -25,4 +27,4 @@ For a scenario when the player is kicked;
 - Data2 - `boolean` :octicons-x-16:
 - Data3 - `number` :octicons-check-16:
 
-A warning will be sent in the server output and the packet will be dropped. If you manually set an invalid type callback that will be run as well.
+A warning will be sent in the server output and the packet will be dropped. If you manually set the middleware for this, that will be run instead and a warning will not be displayed.
